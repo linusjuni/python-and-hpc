@@ -13,4 +13,6 @@
 echo "Running on host: $(hostname)"
 echo "Number of cores allocated: $LSB_DJOB_NUMPROC"
 
-/bin/sleep 60
+/bin/sleep 30
+
+echo "Done sleeping."
