@@ -10,4 +10,4 @@
 
 cd ~/projects/python-and-hpc
 uv sync
-uv run exercises/week2/cache_effects.py
+uv run exercises/week3/cache_effects.py
