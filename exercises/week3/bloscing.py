@@ -37,13 +37,13 @@ def read_blosc(file_name):
     return blosc.unpack_array(b_arr)
 
 
-def benchmark(arr, label, file_name):
+def benchmark(arr, label, file_name, cname="lz4"):
     with Timer() as t:
         write_numpy(arr, file_name)
     t_wn = t.elapsed
 
     with Timer() as t:
-        write_blosc(arr, file_name)
+        write_blosc(arr, file_name, cname=cname)
     t_wb = t.elapsed
 
     with Timer() as t:
@@ -57,7 +57,7 @@ def benchmark(arr, label, file_name):
     npy_mb = os.path.getsize(f"{file_name}.npy") / 1024**2
     bl_mb = os.path.getsize(f"{file_name}.bl") / 1024**2
 
-    print(f"{label}: {t_wn:.4f} {t_wb:.4f} {t_rn:.4f} {t_rb:.4f} | npy={npy_mb:.2f}MB bl={bl_mb:.2f}MB")
+    print(f"{label} [{cname:4s}]: {t_wn:.4f} {t_wb:.4f} {t_rn:.4f} {t_rb:.4f} | npy={npy_mb:.2f}MB bl={bl_mb:.2f}MB")
 
 
 if __name__ == "__main__":
@@ -65,13 +65,16 @@ if __name__ == "__main__":
     print(f"n={n}  [write_numpy write_blosc read_numpy read_blosc | file sizes]")
 
     zeros = np.zeros((n, n, n), dtype='uint8')
-    benchmark(zeros, "zeros ", "tmp_array")
+    for cname in ("lz4", "zstd"):
+        benchmark(zeros, "zeros ", "tmp_array", cname=cname)
 
     tiled = np.tile(
         np.arange(256, dtype='uint8'),
         (n // 256) * n * n,
     ).reshape(n, n, n)
-    benchmark(tiled, "tiled ", "tmp_array")
+    for cname in ("lz4", "zstd"):
+        benchmark(tiled, "tiled ", "tmp_array", cname=cname)
 
     random = np.random.randint(0, 256, size=(n, n, n), dtype='uint8')
-    benchmark(random, "random", "tmp_array")
+    for cname in ("lz4", "zstd"):
+        benchmark(random, "random", "tmp_array", cname=cname)
