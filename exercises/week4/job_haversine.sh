@@ -9,4 +9,10 @@
 #BSUB -e haversine_%J.err
 
 uv sync
-uv run -m exercises.week4.haversine input.csv
+uv run python -m cProfile -o profile.prof exercises/week4/haversine.py input.csv
+uv run python -c "
+import pstats
+p = pstats.Stats('profile.prof')
+p.sort_stats('cumulative')
+p.print_stats(20)
+"
