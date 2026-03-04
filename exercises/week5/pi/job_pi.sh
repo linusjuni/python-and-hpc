@@ -3,6 +3,7 @@
 #BSUB -n 10
 #BSUB -R "select[model == XeonGold6126]"
 #BSUB -R "rusage[mem=1GB]"
+#BSUB -R "span[hosts=1]"
 #BSUB -W 30
 #BSUB -J pi
 #BSUB -o pi_%J.out
