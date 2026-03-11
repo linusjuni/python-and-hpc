@@ -3,6 +3,7 @@ import multiprocessing as mp
 import sys
 from time import perf_counter as time
 import numpy as np
+from PIL import Image
 def init(shared_arr_):
     global shared_arr
     shared_arr = shared_arr_
@@ -15,7 +16,8 @@ def tonumpyarray(mp_arr):
 def reduce_step(args):
     b, e, s, elemshape = args
     arr = tonumpyarray(shared_arr).reshape((-1,) + elemshape)
-    arr[b] += arr[b + 1]
+    if b + 1 < len(arr):
+        arr[b] += arr[b + 1]
 
 
 if __name__ == '__main__':
@@ -38,4 +40,8 @@ if __name__ == '__main__':
              chunksize=1)
 
     print(time() - t)
-    print(arr.reshape(-1))
+    final_image = arr[0]
+    # final_image /= len(arr)  # For mean
+    Image.fromarray(
+        (255 * final_image.astype(float)).astype('uint8')
+    ).save('result.png')
