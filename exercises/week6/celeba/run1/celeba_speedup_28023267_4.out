@@ -1,0 +1,66 @@
+n_processes=8
+3.6360840778797865
+3.3375637489371
+3.019128699088469
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28023267[4]: <celeba_speedup[1-5]> in cluster <dcc> Done
+
+Job <celeba_speedup[1-5]> was submitted from host <hpclogin1> by user <s225224> in cluster <dcc> at Wed Mar 11 11:04:40 2026
+Job was executed on host(s) <16*n-62-21-61>, in queue <hpc>, as user <s225224> in cluster <dcc> at Wed Mar 11 11:04:40 2026
+</zhome/77/2/187952> was used as the home directory.
+</zhome/77/2/187952/projects/python-and-hpc> was used as the working directory.
+Started at Wed Mar 11 11:04:40 2026
+Terminated at Wed Mar 11 11:07:34 2026
+Results reported at Wed Mar 11 11:07:34 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q hpc
+#BSUB -J "celeba_speedup[1-5]"
+#BSUB -o exercises/week6/celeba/celeba_speedup_%J_%I.out
+#BSUB -e exercises/week6/celeba/celeba_speedup_%J_%I.err
+#BSUB -n 16
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=8GB]"
+#BSUB -W 30
+
+DATA=/dtu/projects/02613_2025/data/celeba/celeba_100K.npy
+N_PROCESSES_LIST=(1 2 4 8 16)
+N_PROCESSES=${N_PROCESSES_LIST[$LSB_JOBINDEX - 1]}
+
+uv sync
+echo "n_processes=$N_PROCESSES"
+for i in 1 2 3; do
+    uv run python exercises/week6/celeba/celeba.py $DATA $N_PROCESSES
+done
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   164.84 sec.
+    Max Memory :                                 18883 MB
+    Average Memory :                             12333.00 MB
+    Total Requested Memory :                     131072.00 MB
+    Delta Memory :                               112189.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                8
+    Run time :                                   174 sec.
+    Turnaround time :                            174 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <exercises/week6/celeba/celeba_speedup_28023267_4.err> for stderr output of this job.
+

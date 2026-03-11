@@ -1,0 +1,66 @@
+n_processes=2
+5.716279964894056
+5.663628119044006
+5.69071931601502
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28023301[2]: <celeba_numa[1-5]> in cluster <dcc> Done
+
+Job <celeba_numa[1-5]> was submitted from host <hpclogin1> by user <s225224> in cluster <dcc> at Wed Mar 11 11:08:27 2026
+Job was executed on host(s) <16*n-62-21-72>, in queue <hpc>, as user <s225224> in cluster <dcc> at Wed Mar 11 11:08:28 2026
+</zhome/77/2/187952> was used as the home directory.
+</zhome/77/2/187952/projects/python-and-hpc> was used as the working directory.
+Started at Wed Mar 11 11:08:28 2026
+Terminated at Wed Mar 11 11:13:21 2026
+Results reported at Wed Mar 11 11:13:21 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q hpc
+#BSUB -J "celeba_numa[1-5]"
+#BSUB -o exercises/week6/celeba/celeba_numa_%J_%I.out
+#BSUB -e exercises/week6/celeba/celeba_numa_%J_%I.err
+#BSUB -n 16
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=8GB]"
+#BSUB -W 30
+
+DATA=/dtu/projects/02613_2025/data/celeba/celeba_100K.npy
+N_PROCESSES_LIST=(1 2 4 8 16)
+N_PROCESSES=${N_PROCESSES_LIST[$LSB_JOBINDEX - 1]}
+
+uv sync
+echo "n_processes=$N_PROCESSES"
+for i in 1 2 3; do
+    numactl --interleave=all uv run python exercises/week6/celeba/celeba.py $DATA $N_PROCESSES
+done
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   159.93 sec.
+    Max Memory :                                 16464 MB
+    Average Memory :                             8871.75 MB
+    Total Requested Memory :                     131072.00 MB
+    Delta Memory :                               114608.00 MB
+    Max Swap :                                   -
+    Max Processes :                              7
+    Max Threads :                                12
+    Run time :                                   293 sec.
+    Turnaround time :                            294 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <exercises/week6/celeba/celeba_numa_28023301_2.err> for stderr output of this job.
+
