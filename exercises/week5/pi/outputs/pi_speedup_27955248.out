@@ -1,0 +1,82 @@
+Running with up to 24 processes...
+n_proc= 1  time=0.732s  pi≈3.14149
+n_proc= 2  time=0.321s  pi≈3.14026
+n_proc= 3  time=0.222s  pi≈3.14164
+n_proc= 4  time=0.181s  pi≈3.13864
+n_proc= 5  time=0.149s  pi≈3.14450
+n_proc= 6  time=0.127s  pi≈3.14388
+n_proc= 7  time=0.113s  pi≈3.14358
+n_proc= 8  time=0.110s  pi≈3.14266
+n_proc= 9  time=0.105s  pi≈3.13826
+n_proc=10  time=0.100s  pi≈3.14281
+n_proc=11  time=0.097s  pi≈3.13740
+n_proc=12  time=0.094s  pi≈3.14325
+n_proc=13  time=0.087s  pi≈3.14086
+n_proc=14  time=0.093s  pi≈3.14180
+n_proc=15  time=0.085s  pi≈3.14216
+n_proc=16  time=0.089s  pi≈3.14248
+n_proc=17  time=0.092s  pi≈3.14286
+n_proc=18  time=0.085s  pi≈3.14263
+n_proc=19  time=0.084s  pi≈3.14077
+n_proc=20  time=0.087s  pi≈3.14383
+n_proc=21  time=0.094s  pi≈3.14265
+n_proc=22  time=0.092s  pi≈3.14401
+n_proc=23  time=0.101s  pi≈3.14295
+n_proc=24  time=0.109s  pi≈3.13981
+Plot saved to exercises/week5/pi/speedup.png
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 27955248: <pi_speedup> in cluster <dcc> Done
+
+Job <pi_speedup> was submitted from host <hpclogin1> by user <s225224> in cluster <dcc> at Wed Mar  4 20:36:47 2026
+Job was executed on host(s) <24*n-62-31-10>, in queue <hpc>, as user <s225224> in cluster <dcc> at Fri Mar  6 06:51:44 2026
+</zhome/77/2/187952> was used as the home directory.
+</zhome/77/2/187952/projects/python-and-hpc> was used as the working directory.
+Started at Fri Mar  6 06:51:44 2026
+Terminated at Fri Mar  6 06:52:08 2026
+Results reported at Fri Mar  6 06:52:08 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q hpc
+#BSUB -n 24
+#BSUB -R "select[model == XeonGold6126]"
+#BSUB -R "rusage[mem=1GB]"
+#BSUB -R "span[hosts=1]"
+#BSUB -W 30
+#BSUB -J pi_speedup
+#BSUB -o pi_speedup_%J.out
+#BSUB -e pi_speedup_%J.err
+
+uv sync
+uv run python exercises/week5/pi/speedup.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   22.06 sec.
+    Max Memory :                                 50 MB
+    Average Memory :                             50.00 MB
+    Total Requested Memory :                     24576.00 MB
+    Delta Memory :                               24526.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                8
+    Run time :                                   23 sec.
+    Turnaround time :                            123321 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <pi_speedup_27955248.err> for stderr output of this job.
+
