@@ -23,7 +23,7 @@ def reduce_step(args):
         arr[b] += arr[b + s]
 
 
-def plot_speedup(out_glob):
+def load_results(out_glob):
     results = {}
     for path in glob.glob(out_glob):
         with open(path) as f:
@@ -35,37 +35,50 @@ def plot_speedup(out_glob):
         times = [float(x) for x in re.findall(r'^(\d+\.\d+)$', content, re.MULTILINE)]
         if times:
             results[n] = times
+    return results
 
-    processes = sorted(results)
-    avg_times = [np.mean(results[p]) for p in processes]
-    baseline  = avg_times[0]
-    speedups  = [baseline / t for t in avg_times]
 
-    print(f"{'processes':>10}  {'avg time (s)':>12}  {'speedup':>8}")
-    for p, t, s in zip(processes, avg_times, speedups):
-        print(f"{p:>10}  {t:>12.3f}  {s:>8.2f}x")
-
+def plot_speedup(*glob_label_pairs):
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))
-    ax1.plot(processes, avg_times, 'o-')
+
+    for out_glob, label in glob_label_pairs:
+        results = load_results(out_glob)
+        processes = sorted(results)
+        avg_times = [np.mean(results[p]) for p in processes]
+        baseline  = avg_times[0]
+        speedups  = [baseline / t for t in avg_times]
+
+        print(f"\n{label}")
+        print(f"{'processes':>10}  {'avg time (s)':>12}  {'speedup':>8}")
+        for p, t, s in zip(processes, avg_times, speedups):
+            print(f"{p:>10}  {t:>12.3f}  {s:>8.2f}x")
+
+        ax1.plot(processes, avg_times, 'o-', label=label)
+        ax2.plot(processes, speedups, 'o-', label=label)
+
+    all_procs = sorted(set(processes))
+    ax2.plot(all_procs, all_procs, 'k--', label='Ideal')
+
     ax1.set_xlabel('Number of processes')
     ax1.set_ylabel('Time (s)')
     ax1.set_title('Runtime vs processes')
-    ax1.set_xticks(processes)
-    ax2.plot(processes, speedups, 'o-', label='Measured')
-    ax2.plot(processes, processes, 'k--', label='Ideal')
+    ax1.legend()
+
     ax2.set_xlabel('Number of processes')
     ax2.set_ylabel('Speedup')
     ax2.set_title('Speedup vs processes')
-    ax2.set_xticks(processes)
     ax2.legend()
+
     plt.tight_layout()
     plt.savefig('exercises/week6/celeba/speedup.png', dpi=150)
-    print("Saved speedup.png")
+    print("\nSaved speedup.png")
 
 
 if __name__ == '__main__':
     if sys.argv[1] == 'plot':
-        plot_speedup(sys.argv[2])
+        # usage: celeba.py plot glob1 label1 [glob2 label2 ...]
+        pairs = [(sys.argv[i], sys.argv[i+1]) for i in range(2, len(sys.argv), 2)]
+        plot_speedup(*pairs)
         sys.exit(0)
 
     n_processes = int(sys.argv[2]) if len(sys.argv) > 2 else 4
