@@ -1,0 +1,59 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28052842: <exercise2> in cluster <dcc> Done
+
+Job <exercise2> was submitted from host <n-62-30-2> by user <s225224> in cluster <dcc> at Wed Mar 18 11:27:46 2026
+Job was executed on host(s) <n-62-31-9>, in queue <hpc>, as user <s225224> in cluster <dcc> at Wed Mar 18 11:27:46 2026
+</zhome/77/2/187952> was used as the home directory.
+</zhome/77/2/187952/projects/python-and-hpc> was used as the working directory.
+Started at Wed Mar 18 11:27:46 2026
+Terminated at Wed Mar 18 11:31:27 2026
+Results reported at Wed Mar 18 11:31:27 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q hpc
+#BSUB -J exercise2
+#BSUB -o miniproject/jobs/exercise2_%J.out
+#BSUB -e miniproject/jobs/exercise2_%J.err
+#BSUB -n 1
+#BSUB -R "select[model == XeonGold6126]"
+#BSUB -R "rusage[mem=4GB]"
+#BSUB -W 30
+
+N=20
+
+uv sync
+mkdir -p miniproject/results
+
+time uv run python miniproject/simulate.py $N > miniproject/results/exercise2/output.csv
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   220.31 sec.
+    Max Memory :                                 127 MB
+    Average Memory :                             99.50 MB
+    Total Requested Memory :                     4096.00 MB
+    Delta Memory :                               3969.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                8
+    Run time :                                   221 sec.
+    Turnaround time :                            221 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <miniproject/jobs/exercise2_28052842.err> for stderr output of this job.
+
