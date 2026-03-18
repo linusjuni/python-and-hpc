@@ -8,3 +8,9 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Miniproject outputs
+miniproject/results/*
+!miniproject/results/.gitkeep
+miniproject/jobs/*.out
+miniproject/jobs/*.err
