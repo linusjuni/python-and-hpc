@@ -1,0 +1,58 @@
+Pandas:  20.199s  (8,142,495 rows, 7 columns)
+PyArrow: 9.046s  (8,142,495 rows, 7 columns)
+
+Speedup (pandas / pyarrow): 2.23x
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28055313: <ex2_pyarrow_load> in cluster <dcc> Done
+
+Job <ex2_pyarrow_load> was submitted from host <hpclogin1> by user <s225224> in cluster <dcc> at Wed Mar 18 15:02:26 2026
+Job was executed on host(s) <n-62-11-67>, in queue <hpc>, as user <s225224> in cluster <dcc> at Wed Mar 18 15:02:26 2026
+</zhome/77/2/187952> was used as the home directory.
+</zhome/77/2/187952/projects/python-and-hpc> was used as the working directory.
+Started at Wed Mar 18 15:02:26 2026
+Terminated at Wed Mar 18 15:02:58 2026
+Results reported at Wed Mar 18 15:02:58 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q hpc
+#BSUB -J ex2_pyarrow_load
+#BSUB -o exercises/week7/ex2_pyarrow_load_%J.out
+#BSUB -e exercises/week7/ex2_pyarrow_load_%J.err
+#BSUB -n 1
+#BSUB -R "rusage[mem=4GB]"
+#BSUB -W 10
+
+uv sync
+uv run python exercises/week7/pyarrow_load.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   31.07 sec.
+    Max Memory :                                 672 MB
+    Average Memory :                             672.00 MB
+    Total Requested Memory :                     4096.00 MB
+    Delta Memory :                               3424.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                8
+    Run time :                                   32 sec.
+    Turnaround time :                            32 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <exercises/week7/ex2_pyarrow_load_28055313.err> for stderr output of this job.
+

@@ -1,0 +1,65 @@
+Pandas:           20.434s  (8,142,495 rows, 7 columns)
+PyArrow read_csv: 9.422s  (8,142,495 rows, 7 columns)
+to_pandas():      0.541s
+
+PyArrow total (read + convert): 9.963s
+Speedup vs pandas — PyArrow only: 2.17x
+Speedup vs pandas — total:        2.05x
+
+Memory — pandas DataFrame:       2045.1 MB
+Memory — PyArrow table:          507.6 MB
+Memory — converted DataFrame:    919.1 MB
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28055364: <ex2.2_pyarrow_to_pandas> in cluster <dcc> Done
+
+Job <ex2.2_pyarrow_to_pandas> was submitted from host <hpclogin1> by user <s225224> in cluster <dcc> at Wed Mar 18 15:14:02 2026
+Job was executed on host(s) <n-62-11-67>, in queue <hpc>, as user <s225224> in cluster <dcc> at Wed Mar 18 15:14:04 2026
+</zhome/77/2/187952> was used as the home directory.
+</zhome/77/2/187952/projects/python-and-hpc> was used as the working directory.
+Started at Wed Mar 18 15:14:04 2026
+Terminated at Wed Mar 18 15:14:43 2026
+Results reported at Wed Mar 18 15:14:43 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q hpc
+#BSUB -J ex2.2_pyarrow_to_pandas
+#BSUB -o exercises/week7/ex2.2_pyarrow_to_pandas_%J.out
+#BSUB -e exercises/week7/ex2.2_pyarrow_to_pandas_%J.err
+#BSUB -n 1
+#BSUB -R "rusage[mem=4GB]"
+#BSUB -W 10
+
+uv sync
+uv run python exercises/week7/pyarrow_to_pandas.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   38.37 sec.
+    Max Memory :                                 682 MB
+    Average Memory :                             682.00 MB
+    Total Requested Memory :                     4096.00 MB
+    Delta Memory :                               3414.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                8
+    Run time :                                   39 sec.
+    Turnaround time :                            41 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <exercises/week7/ex2.2_pyarrow_to_pandas_28055364.err> for stderr output of this job.
+

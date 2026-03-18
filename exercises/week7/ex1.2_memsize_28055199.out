@@ -1,0 +1,56 @@
+Shape:       (8142495, 7)
+Memory size: 2,144,438,374 bytes (2045.1 MB)
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28055199: <ex2_memsize> in cluster <dcc> Done
+
+Job <ex2_memsize> was submitted from host <hpclogin1> by user <s225224> in cluster <dcc> at Wed Mar 18 14:38:34 2026
+Job was executed on host(s) <n-62-11-66>, in queue <hpc>, as user <s225224> in cluster <dcc> at Wed Mar 18 14:38:35 2026
+</zhome/77/2/187952> was used as the home directory.
+</zhome/77/2/187952/projects/python-and-hpc> was used as the working directory.
+Started at Wed Mar 18 14:38:35 2026
+Terminated at Wed Mar 18 14:39:00 2026
+Results reported at Wed Mar 18 14:39:00 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q hpc
+#BSUB -J ex2_memsize
+#BSUB -o exercises/week7/ex2_memsize_%J.out
+#BSUB -e exercises/week7/ex2_memsize_%J.err
+#BSUB -n 1
+#BSUB -R "rusage[mem=4GB]"
+#BSUB -W 10
+
+uv sync
+uv run python exercises/week7/load_and_memsize.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   24.12 sec.
+    Max Memory :                                 720 MB
+    Average Memory :                             480.33 MB
+    Total Requested Memory :                     4096.00 MB
+    Delta Memory :                               3376.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                8
+    Run time :                                   25 sec.
+    Turnaround time :                            26 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <exercises/week7/ex2_memsize_28055199.err> for stderr output of this job.
+

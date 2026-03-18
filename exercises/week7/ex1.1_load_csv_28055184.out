@@ -1,0 +1,58 @@
+Approach 1 (unzip then read_csv): 18.161s  (8,142,495 rows, 7 columns)
+Approach 2 (read_csv from zip)  : 19.431s  (8,142,495 rows, 7 columns)
+
+Speedup (1/2): 0.93x
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28055184: <ex1_load_csv> in cluster <dcc> Done
+
+Job <ex1_load_csv> was submitted from host <hpclogin1> by user <s225224> in cluster <dcc> at Wed Mar 18 14:36:14 2026
+Job was executed on host(s) <n-62-11-66>, in queue <hpc>, as user <s225224> in cluster <dcc> at Wed Mar 18 14:36:16 2026
+</zhome/77/2/187952> was used as the home directory.
+</zhome/77/2/187952/projects/python-and-hpc> was used as the working directory.
+Started at Wed Mar 18 14:36:16 2026
+Terminated at Wed Mar 18 14:36:56 2026
+Results reported at Wed Mar 18 14:36:56 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q hpc
+#BSUB -J ex1_load_csv
+#BSUB -o exercises/week7/ex1_load_csv_%J.out
+#BSUB -e exercises/week7/ex1_load_csv_%J.err
+#BSUB -n 1
+#BSUB -R "rusage[mem=4GB]"
+#BSUB -W 10
+
+uv sync
+uv run python exercises/week7/load_csv.py
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   37.83 sec.
+    Max Memory :                                 616 MB
+    Average Memory :                             616.00 MB
+    Total Requested Memory :                     4096.00 MB
+    Delta Memory :                               3480.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                8
+    Run time :                                   40 sec.
+    Turnaround time :                            42 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <exercises/week7/ex1_load_csv_28055184.err> for stderr output of this job.
+
