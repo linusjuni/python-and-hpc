@@ -36,3 +36,27 @@ def plot_initial_domain_conditions_and_mask(
         plt.close(fig)
     else:
         plt.show()
+
+def plot_simulation_results(
+    u: np.ndarray,
+    interior_mask: np.ndarray,
+    bid: str,
+    save_dir: Path | None = None,
+) -> None:
+    """Visualize the temperature distribution after the simulation, excluding the boundary conditions."""
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+    im = ax.imshow(u[1:-1, 1:-1], cmap="coolwarm", vmin=0, vmax=25)
+    ax.set_title(f"Simulation result (ID: {bid})")
+    divider = make_axes_locatable(ax)
+    cax = divider.append_axes("right", size="5%", pad=0.05)
+    fig.colorbar(im, cax=cax, label="Temperature (°C)")
+    plt.tight_layout()
+
+    if save_dir is not None:
+        save_dir.mkdir(exist_ok=True)
+        path = save_dir / f"{bid}_simulation.png"
+        plt.savefig(path, dpi=150)
+        plt.close(fig)
+    else:
+        plt.show()
