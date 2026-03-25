@@ -1,0 +1,22 @@
+Resolved 162 packages in 581ms
+Audited 157 packages in 512ms
+
+real	18m59.880s
+user	18m47.188s
+sys	0m1.441s
+
+real	10m20.469s
+user	20m7.797s
+sys	0m1.096s
+
+real	6m50.266s
+user	25m17.409s
+sys	0m1.319s
+
+real	4m4.646s
+user	26m41.297s
+sys	0m1.093s
+
+real	2m57.639s
+user	36m35.024s
+sys	0m1.707s
