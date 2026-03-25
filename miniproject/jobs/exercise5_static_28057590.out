@@ -1,0 +1,70 @@
+=== Workers: 1 ===
+=== Workers: 2 ===
+=== Workers: 4 ===
+=== Workers: 8 ===
+=== Workers: 16 ===
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28057590: <exercise5_static> in cluster <dcc> Done
+
+Job <exercise5_static> was submitted from host <hpclogin1> by user <s254124> in cluster <dcc> at Wed Mar 18 18:36:42 2026
+Job was executed on host(s) <16*n-62-31-9>, in queue <hpc>, as user <s254124> in cluster <dcc> at Thu Mar 19 07:59:40 2026
+</zhome/e2/6/224426> was used as the home directory.
+</zhome/e2/6/224426/project/python-and-hpc> was used as the working directory.
+Started at Thu Mar 19 07:59:40 2026
+Terminated at Thu Mar 19 08:43:00 2026
+Results reported at Thu Mar 19 08:43:00 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q hpc
+#BSUB -J exercise5_static
+#BSUB -o miniproject/jobs/exercise5_static_%J.out
+#BSUB -e miniproject/jobs/exercise5_static_%J.err
+#BSUB -n 16
+#BSUB -R "span[hosts=1]"
+#BSUB -R "select[model == XeonGold6126]"
+#BSUB -R "rusage[mem=8GB]"
+#BSUB -W 60
+
+N=100
+
+uv sync
+mkdir -p miniproject/results/exercise5
+
+# Time with increasing number of workers to measure speed-up
+for W in 1 2 4 8 16; do
+    echo "=== Workers: $W ==="
+    time uv run python miniproject/exercise5.py $N $W \
+        > miniproject/results/exercise5/output_w${W}.csv
+done
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   7666.29 sec.
+    Max Memory :                                 271 MB
+    Average Memory :                             118.00 MB
+    Total Requested Memory :                     131072.00 MB
+    Delta Memory :                               130801.00 MB
+    Max Swap :                                   -
+    Max Processes :                              21
+    Max Threads :                                26
+    Run time :                                   2600 sec.
+    Turnaround time :                            50778 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <miniproject/jobs/exercise5_static_28057590.err> for stderr output of this job.
+
