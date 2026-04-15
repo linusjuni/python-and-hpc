@@ -1,0 +1,60 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28192260: <exercise7> in cluster <dcc> Done
+
+Job <exercise7> was submitted from host <n-62-27-22> by user <s225170> in cluster <dcc> at Sun Apr 12 08:09:01 2026
+Job was executed on host(s) <n-62-31-5>, in queue <hpc>, as user <s225170> in cluster <dcc> at Sun Apr 12 08:09:03 2026
+</zhome/3e/4/187640> was used as the home directory.
+</zhome/3e/4/187640/projects/python-and-hpc> was used as the working directory.
+Started at Sun Apr 12 08:09:03 2026
+Terminated at Sun Apr 12 08:10:00 2026
+Results reported at Sun Apr 12 08:10:00 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q hpc
+#BSUB -J exercise7
+#BSUB -o miniproject/jobs/exercise7_%J.out
+#BSUB -e miniproject/jobs/exercise7_%J.err
+#BSUB -n 1
+#BSUB -R "select[model == XeonGold6126]"
+#BSUB -R "rusage[mem=4GB]"
+#BSUB -W 30
+
+N=20
+
+export PATH="$HOME/.local/bin:$PATH"
+
+uv sync
+mkdir -p miniproject/results/exercise7
+
+time uv run python miniproject/exercise7.py $N > miniproject/results/exercise7/output.csv
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   41.91 sec.
+    Max Memory :                                 180 MB
+    Average Memory :                             141.67 MB
+    Total Requested Memory :                     4096.00 MB
+    Delta Memory :                               3916.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                9
+    Run time :                                   57 sec.
+    Turnaround time :                            59 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <miniproject/jobs/exercise7_28192260.err> for stderr output of this job.
+
