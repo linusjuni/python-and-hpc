@@ -3,9 +3,9 @@
 #BSUB -J cuda_vector_addition
 #BSUB -o exercises/week10/cuda_vector_addition_%J.out
 #BSUB -e exercises/week10/cuda_vector_addition_%J.err
-#BSUB -n 1
+#BSUB -n 4
 #BSUB -gpu "num=1:mode=exclusive_process"
-#BSUB -R "rusage[mem=4GB]"
+#BSUB -R "rusage[mem=4GB] span[hosts=1]"
 #BSUB -W 10
 
 module load cuda
