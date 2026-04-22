@@ -1,0 +1,59 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28248729: <exercise9> in cluster <dcc> Done
+
+Job <exercise9> was submitted from host <n-62-27-23> by user <s225170> in cluster <dcc> at Tue Apr 21 22:28:51 2026
+Job was executed on host(s) <4*n-62-18-13>, in queue <c02613>, as user <s225170> in cluster <dcc> at Tue Apr 21 22:28:53 2026
+</zhome/3e/4/187640> was used as the home directory.
+</zhome/3e/4/187640/projects/python-and-hpc> was used as the working directory.
+Started at Tue Apr 21 22:28:53 2026
+Terminated at Tue Apr 21 22:29:46 2026
+Results reported at Tue Apr 21 22:29:46 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q c02613
+#BSUB -J exercise9
+#BSUB -o miniproject/jobs/exercise9_%J.out
+#BSUB -e miniproject/jobs/exercise9_%J.err
+#BSUB -n 4
+#BSUB -R "span[hosts=1]"
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -R "rusage[mem=4GB]"
+#BSUB -W 30
+
+N=20
+
+source /dtu/projects/02613_2025/conda/conda_init.sh
+conda activate 02613_2026
+
+time python miniproject/exercise9.py $N > miniproject/results/exercise9/output.csv
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   51.71 sec.
+    Max Memory :                                 103 MB
+    Average Memory :                             103.00 MB
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               16281.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                10
+    Run time :                                   53 sec.
+    Turnaround time :                            55 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <miniproject/jobs/exercise9_28248729.err> for stderr output of this job.
+
