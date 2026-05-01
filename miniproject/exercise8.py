@@ -43,15 +43,6 @@ def jacobi_cuda(u, interior_mask, max_iter, atol=1e-6):
 
     for _ in range(max_iter):
         jacobi_step[bpg, tpb](u_device, u_new_device, mask_device)
-
-        u_old = u_device.copy_to_host()
-        u_new = u_new_device.copy_to_host()
-
-        delta = np.max(np.abs(u_new - u_old))
-
-        if delta < atol:
-            break
-
         u_device, u_new_device = u_new_device, u_device
 
     return u_device.copy_to_host()

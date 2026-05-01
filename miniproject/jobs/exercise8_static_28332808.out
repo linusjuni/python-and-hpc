@@ -1,0 +1,139 @@
+Processing building 10000 (1/20)...
+Finished building 10000.
+6.634732342982112
+Processing building 10009 (2/20)...
+Finished building 10009.
+5.446838522078078
+Processing building 10014 (3/20)...
+Finished building 10014.
+9.819701269951382
+Processing building 10019 (4/20)...
+Finished building 10019.
+9.744853650724869
+Processing building 10029 (5/20)...
+Finished building 10029.
+4.187396795458308
+Processing building 10031 (6/20)...
+Finished building 10031.
+8.497346030189133
+Processing building 10051 (7/20)...
+Finished building 10051.
+9.262933693715562
+Processing building 10053 (8/20)...
+Finished building 10053.
+4.749275267824175
+Processing building 10056 (9/20)...
+Finished building 10056.
+9.952353628119388
+Processing building 10064 (10/20)...
+Finished building 10064.
+5.223252512532297
+Processing building 10075 (11/20)...
+Finished building 10075.
+9.448542723863543
+Processing building 10079 (12/20)...
+Finished building 10079.
+7.959127313213895
+Processing building 10080 (13/20)...
+Finished building 10080.
+8.100615416819945
+Processing building 10082 (14/20)...
+Finished building 10082.
+8.75262151859183
+Processing building 10083 (15/20)...
+Finished building 10083.
+6.128261077904399
+Processing building 10084 (16/20)...
+Finished building 10084.
+5.987926768440791
+Processing building 10085 (17/20)...
+Finished building 10085.
+6.51069990963744
+Processing building 10086 (18/20)...
+Finished building 10086.
+7.539267808516995
+Processing building 10087 (19/20)...
+Finished building 10087.
+7.095752281237912
+Processing building 10089 (20/20)...
+Finished building 10089.
+7.329937292939497
+GPU Jacobi time for 20 buildings: 19.37 seconds
+building_id, mean_temp, std_temp, pct_above_18, pct_below_15
+10000, 6.634732342982112, 5.595448260511732, 6.654370547177317, 88.63874724241438
+10009, 5.446838522078078, 5.033299541983458, 4.475324153181224, 92.40627198713437
+10014, 9.819701269951382, 6.507510907790768, 15.37224405040614, 75.44431098715417
+10019, 9.744853650724869, 6.4977739249522335, 15.075126397493413, 75.86596270638142
+10029, 4.187396795458308, 4.075863161575241, 2.1080318682575383, 96.03933976289406
+10031, 8.497346030189133, 5.9051627050212865, 9.485019002445275, 84.10128745249389
+10051, 9.262933693715562, 6.138496864336562, 11.961950932863228, 80.09769355075657
+10053, 4.749275267824175, 4.3640007683326605, 2.8363011283497883, 94.99515162200282
+10056, 9.952353628119388, 6.381428635281399, 15.230164738113261, 76.38333153094698
+10064, 5.223252512532297, 4.977662616776504, 3.868934729962361, 93.15204388293992
+10075, 9.448542723863543, 6.538886371870119, 14.787783764685097, 77.08572564261108
+10079, 7.959127313213895, 6.453684535726626, 11.568504089435223, 82.78565551952765
+10080, 8.100615416819945, 6.364673520161408, 11.605647049602727, 82.55821927873735
+10082, 8.75262151859183, 6.522428183384825, 13.317528803755158, 80.07301692665118
+10083, 6.128261077904399, 5.354098024683414, 5.458505512210404, 90.48826697298345
+10084, 5.987926768440791, 5.3406082770250975, 5.728053004065653, 90.59930733323294
+10085, 6.51069990963744, 5.470573399284462, 6.368420310097204, 89.6022911640637
+10086, 7.539267808516995, 6.22475316569692, 10.167230546157564, 84.56645722571291
+10087, 7.095752281237912, 6.149512997126285, 9.281614324499516, 86.01087865322648
+10089, 7.329937292939497, 6.1454503037111285, 9.514577797111865, 85.31061157712567
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28332808: <exercise8_static> in cluster <dcc> Done
+
+Job <exercise8_static> was submitted from host <n-62-12-19> by user <s252653> in cluster <dcc> at Fri May  1 11:39:02 2026
+Job was executed on host(s) <4*n-62-18-13>, in queue <c02613>, as user <s252653> in cluster <dcc> at Fri May  1 11:39:03 2026
+</zhome/07/9/222849> was used as the home directory.
+</work3/s252653/python-and-hpc> was used as the working directory.
+Started at Fri May  1 11:39:03 2026
+Terminated at Fri May  1 11:39:26 2026
+Results reported at Fri May  1 11:39:26 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -o miniproject/jobs/exercise8_static_%J.out
+#BSUB -e miniproject/jobs/exercise8_static_%J.err
+#BSUB -q c02613
+#BSUB -J exercise8_static
+#BSUB -n 4
+#BSUB -R "span[hosts=1]"
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -R "rusage[mem=4GB]"
+
+N=20
+source /dtu/projects/02613_2025/conda/conda_init.sh
+conda activate 02613_2026
+python -u miniproject/exercise8.py $N
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   20.75 sec.
+    Max Memory :                                 164 MB
+    Average Memory :                             164.00 MB
+    Total Requested Memory :                     16384.00 MB
+    Delta Memory :                               16220.00 MB
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                10
+    Run time :                                   23 sec.
+    Turnaround time :                            24 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <miniproject/jobs/exercise8_static_28332808.err> for stderr output of this job.
+
