@@ -68,11 +68,7 @@ if __name__ == '__main__':
     with open(join(LOAD_DIR, 'building_ids.txt'), 'r') as f:
         building_ids = f.read().splitlines()
 
-    if len(sys.argv) < 2:
-        N = 1
-    else:
-        N = int(sys.argv[1])
-    building_ids = building_ids[:N]
+    N = len(building_ids)
 
     # Load floor plans
     all_u0 = np.empty((N, 514, 514))
@@ -91,13 +87,9 @@ if __name__ == '__main__':
     start = time.time()
     all_u = np.empty_like(all_u0)
     for i, (u0, interior_mask) in enumerate(zip(all_u0, all_interior_mask)):
-        print(f"Processing building {building_ids[i]} ({i+1}/{N})...")
         u = jacobi_cuda(u0, interior_mask, MAX_ITER, ABS_TOL)
-        print(f"Finished building {building_ids[i]}.")
         print(u[1:-1, 1:-1][interior_mask].mean())  # Print mean temperature for debugging
         all_u[i] = u
-    gpu_time = time.time() - start
-    print(f"GPU Jacobi time for {N} buildings: {gpu_time:.2f} seconds")
 
     # Print summary statistics in CSV format
     stat_keys = ['mean_temp', 'std_temp', 'pct_above_18', 'pct_below_15']
