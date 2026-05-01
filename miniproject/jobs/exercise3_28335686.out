@@ -1,0 +1,61 @@
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 28335686: <exercise3> in cluster <dcc> Done
+
+Job <exercise3> was submitted from host <n-62-27-22> by user <s225170> in cluster <dcc> at Fri May  1 17:37:56 2026
+Job was executed on host(s) <n-62-31-15>, in queue <hpc>, as user <s225170> in cluster <dcc> at Fri May  1 17:37:57 2026
+</zhome/3e/4/187640> was used as the home directory.
+</zhome/3e/4/187640/projects/python-and-hpc> was used as the working directory.
+Started at Fri May  1 17:37:57 2026
+Terminated at Fri May  1 17:38:31 2026
+Results reported at Fri May  1 17:38:31 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -q hpc
+#BSUB -J exercise3
+#BSUB -o miniproject/jobs/exercise3_%J.out
+#BSUB -e miniproject/jobs/exercise3_%J.err
+#BSUB -n 1
+#BSUB -R "select[model == XeonGold6126]"
+#BSUB -R "rusage[mem=4GB]"
+#BSUB -W 30
+
+N=20
+
+export PATH="$HOME/.local/bin:$PATH"
+
+uv sync
+mkdir -p miniproject/results/exercise3
+
+time uv run python miniproject/exercise3.py $N > miniproject/results/exercise3/output.csv
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   33.54 sec.
+    Max Memory :                                 88 MB
+    Average Memory :                             88.00 MB
+    Total Requested Memory :                     4096.00 MB
+    Delta Memory :                               4008.00 MB
+    Max Swap :                                   -
+    Max Processes :                              5
+    Max Threads :                                7
+    Run time :                                   34 sec.
+    Turnaround time :                            35 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <miniproject/jobs/exercise3_28335686.err> for stderr output of this job.
+
