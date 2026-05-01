@@ -12,4 +12,4 @@
 
 source /dtu/projects/02613_2025/conda/conda_init.sh
 conda activate 02613_2026
-python -u miniproject/exercise11.py 
+python -u miniproject/exercise12.py 
