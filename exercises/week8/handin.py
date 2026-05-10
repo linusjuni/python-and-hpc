@@ -6,6 +6,6 @@ chunk_size = int(sys.argv[2])
 
 total = 0.0
 for chunk in pd.read_csv(csv_path, chunksize=chunk_size):
-    total += chunk[chunk['parameterId'] == 'precip_past1h']['value'].sum()
+    total += chunk[chunk['parameterId'] == 'precip_past10min']['value'].sum()
 
 print(total)
