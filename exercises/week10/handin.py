@@ -2,7 +2,7 @@ import sys
 import numpy as np
 from numba import cuda
 
-TPB = 128
+TPB = 64
 
 @cuda.jit
 def reduce_kernel(data, out, n):
