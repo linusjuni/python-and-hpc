@@ -12,6 +12,7 @@
 export MKL_NUM_THREADS=8
 export MPI_NUM_THREADS=8
 export OMP_NUM_THREADS=8
+export OPENBLAS_NUM_THREADS=8
 
 uv sync
 uv run python exercises/week13/matmuls.py
