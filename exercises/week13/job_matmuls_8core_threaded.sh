@@ -9,7 +9,7 @@
 #BSUB -R "rusage[mem=20GB]"
 #BSUB -R "span[hosts=1]"
 
-export MPI_NUM_THREADS=8
+export MKL_NUM_THREADS=8
 export OMP_NUM_THREADS=8
 
 uv sync
